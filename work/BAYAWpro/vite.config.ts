@@ -17,4 +17,17 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  server: {
+    host: '0.0.0.0',
+    port: 5173,
+    strictPort: false,
+    // バックエンド API にプロキシ（開発環境用）
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        // target: 'http://localhost:5000', // Python サーバーの場合
+      },
+    },
+  },
 })
