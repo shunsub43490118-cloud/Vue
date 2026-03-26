@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  vue3:
+    image: node:20-slim
+    container_name: vue
+    volumes:
+      - ../work:/root/work
+      - ../run.sh:/run.sh
+    ports:
+      - "5173:5173"
+    command: /bin/sh -c "chmod +x /run.sh && /run.sh"
+    stdin_open: true
+    tty: true
+    environment:
+      - TZ=Asia/Tokyo
+      - NODE_ENV=development
